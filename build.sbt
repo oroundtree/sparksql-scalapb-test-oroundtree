@@ -7,7 +7,8 @@ version := "1.0.0"
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % "3.2.1" % "provided",
   "org.apache.spark" %% "spark-sql" % "3.2.1" % "provided",
-  "com.thesamet.scalapb" %% "sparksql32-scalapb0_11" % "1.0.0"
+  "com.thesamet.scalapb" %% "sparksql32-scalapb0_11" % "1.0.0",
+  "org.scalatest" %% "scalatest" % "3.2.12"
 )
 
 // Hadoop contains an old protobuf runtime that is not binary compatible
