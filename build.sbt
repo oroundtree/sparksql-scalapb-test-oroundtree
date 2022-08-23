@@ -2,7 +2,7 @@
 
 scalaVersion := "2.12.10"
 
-version := "1.0.0"
+version := "1.0.1"
 
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % "3.2.1" % "provided",
@@ -15,8 +15,7 @@ libraryDependencies ++= Seq(
 // with 3.0.0.  We shaded ours to prevent runtime issues.
 assemblyShadeRules in assembly := Seq(
   ShadeRule.rename("com.google.protobuf.**" -> "shadeproto.@1").inAll,
-  ShadeRule.rename("scala.collection.compat.**" -> "scalacompat.@1").inAll,
-  ShadeRule.rename("shapeless.**" -> "shadeshapeless.@1").inAll
+  ShadeRule.rename("scala.collection.compat.**" -> "scalacompat.@1").inAll
 )
 
 PB.targets in Compile := Seq(
