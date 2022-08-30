@@ -3,6 +3,8 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.scalatest.funsuite.AnyFunSuite
 
+case class PersonWithId(id: Int, person: Person) extends Serializable
+
 class SparkSqlScalaPBTests extends AnyFunSuite {
 
   val sparkConf: SparkConf = new SparkConf()
@@ -60,5 +62,16 @@ class SparkSqlScalaPBTests extends AnyFunSuite {
     val mySeq = Seq("hello", "world")
     val myDf = spark.createDataset(mySeq)
     myDf.show()
+  }
+
+  test("Encode and decode mixed case class") {
+    import scalapb.spark.Implicits._
+    val personWithIdSeq = Seq(PersonWithId(
+      id = 1,
+      person = testPerson1
+    ))
+
+    val personWithIdDataset = spark.createDataset(personWithIdSeq)
+    personWithIdDataset.show(false)
   }
 }
